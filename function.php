@@ -1,5 +1,8 @@
 <?php
 // panggil file koneksi.php
+
+use Dom\Mysql;
+
 require_once('koneksi.php');
 
 // membuat query ke / dari database
@@ -32,4 +35,31 @@ function tambah_task($data)
     mysqli_query($koneksi, $query);
 
     return mysqli_affected_rows($koneksi);
+}
+
+function edit_task($data)
+{
+    global $koneksi;
+
+    $id             = htmlspecialchars($data['id']);
+    $title         = htmlspecialchars($data["title"]);
+    $description         = htmlspecialchars($data["description"]);
+    $assigned_to         = htmlspecialchars($data["assigned_to"]);
+    $status         = htmlspecialchars($data["status"]);
+    $priority         = htmlspecialchars($data["priority"]);
+    $deadline = htmlspecialchars($data["deadline"]);
+
+    $query = "UPDATE tasks SET 
+                title       = '$title',
+                description = '$description',
+                assigned_to = '$assigned_to',
+                status      = '$status',
+                priority    = '$priority',
+                deadline    = '$deadline'
+                WHERE id    = $id  
+                ";
+
+            mysqli_query($koneksi, $query);
+
+            return mysqli_affected_rows($koneksi);
 }

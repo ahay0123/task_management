@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan'])) {
 ?>
 
 <?php
-require_once('function.php');
 include_once('template/header.php');
 ?>
 
@@ -27,7 +26,6 @@ include_once('template/header.php');
                 </p> -->
 
                 <?php
-                require_once('function.php');
 
                 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan'])) {
                     if (tambah_task($_POST) > 0) {
@@ -40,17 +38,8 @@ include_once('template/header.php');
                 }
                 ?>
 
-                <?php if (isset($_GET['status'])): ?>
-                    <?php if ($_GET['status'] === 'success'): ?>
-                        <div class="alert alert-success" role="alert">
-                            Data berhasil disimpan!
-                        </div>
-                    <?php elseif ($_GET['status'] === 'error'): ?>
-                        <div class="alert alert-danger" role="alert">
-                            Data gagal disimpan!
-                        </div>
-                    <?php endif; ?>
-                <?php endif; ?>
+                <?php include_once('alert.php') ?>
+                
                 <div class="container-fluid py-2">
                     <div class="row">
                         <div class="col-12">
@@ -124,7 +113,7 @@ include_once('template/header.php');
                                                         </td>
 
                                                         <td class="align-middle">
-                                                            <button type="button" class="btn btn-primary">Edit</button>
+                                                            <a href="edit-task.php?id=<?= $task['id'] ?>" class="btn btn-primary">Edit</a>
                                                             <button type="button" class="btn btn-danger">Hapus</button>
                                                         </td>
                                                     </tr>
@@ -182,7 +171,7 @@ include_once('template/header.php');
                         <label for="status" class="form-label">Status</label>
                         <select class="form-select border border-dark" name="status" required>
                             <option value="Incomplete">Incomplete</option>
-                            <option value="=In Progress">In Progress</option>
+                            <option value="In Progress">In Progress</option>
                             <option value="Completed">Selesai</option>
                         </select>
                     </div>
