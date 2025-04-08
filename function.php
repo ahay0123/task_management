@@ -63,3 +63,13 @@ function edit_task($data)
 
             return mysqli_affected_rows($koneksi);
 }
+
+function hapus_task($id){
+    global $koneksi;
+
+    $query = "DELETE FROM tasks WHERE id = '$id'";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}

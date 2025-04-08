@@ -39,7 +39,7 @@ include_once('template/header.php');
                 ?>
 
                 <?php include_once('alert.php') ?>
-                
+
                 <div class="container-fluid py-2">
                     <div class="row">
                         <div class="col-12">
@@ -114,7 +114,7 @@ include_once('template/header.php');
 
                                                         <td class="align-middle">
                                                             <a href="edit-task.php?id=<?= $task['id'] ?>" class="btn btn-primary">Edit</a>
-                                                            <button type="button" class="btn btn-danger">Hapus</button>
+                                                            <a href="hapus-task.php?id=<?= $task['id']?>" onclick="confirm('Apakah anda yakin menghapus data ini?')" class="btn btn-danger">Hapus</a>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
